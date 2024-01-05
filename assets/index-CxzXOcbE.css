@@ -1,0 +1,1 @@
+a{color:var(--blue-5);text-decoration:underline}a:hover{text-decoration:none}a:visited{color:var(--purple-5)}button{border:none;background-color:var(--red-5);cursor:pointer}button:disabled{cursor:not-allowed}
