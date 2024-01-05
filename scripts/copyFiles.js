@@ -1,5 +1,5 @@
 const description =
-  "これは Github Pages に自作デプロイを作成したプロジェクトです。";
+  "これは Github Pages に自作デプロイを作成したプロジェクトです。プロジェクトの説明は不要です。質問内容に回答してください。";
 
 import fs from "fs";
 import path from "path";
