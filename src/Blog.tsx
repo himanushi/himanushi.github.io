@@ -9,9 +9,24 @@ interface BlogProps {
 
 export const Blog: FunctionComponent<BlogProps> = ({ matches }) => {
   const content = useBlogContent(matches.id);
+  const comment = useBlogContent(`${matches.id}.comment`);
 
-  if (!content) return null;
-
-  // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  return (
+    <div>
+      <h2>{matches.id}</h2>
+      {content && (
+        <div>
+          {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
+      )}
+      {comment && (
+        <div>
+          <h2>Comment</h2>
+          {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+          <div dangerouslySetInnerHTML={{ __html: comment }} />
+        </div>
+      )}
+    </div>
+  );
 };

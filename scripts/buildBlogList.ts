@@ -18,9 +18,9 @@ export default function buildBlogList() {
           fs.mkdirSync(outputDirectory, { recursive: true });
         }
 
-        const files = fs
-          .readdirSync(blogDirectory)
-          .filter((file) => path.extname(file) === ".md");
+        const files = fs.readdirSync(blogDirectory).filter((file) => {
+          return /^\d{4}-\d{2}-\d{2}\.md$/.test(path.basename(file));
+        });
         const blogList: string[] = [];
 
         for (let i = 0; i < files.length; i++) {
