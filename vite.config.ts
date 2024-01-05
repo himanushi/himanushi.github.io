@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import { importToCDN } from "vite-plugin-external-cdn";
 import tsconfigPaths from "vite-tsconfig-paths";
 import buildBlogList from "./scripts/buildBlogList";
-import copy404ToIndex from "./scripts/copy404ToIndex";
+import copyIndexToDates from "./scripts/copyIndexToDates";
 
 export default defineConfig({
   resolve: {
@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [
     tsconfigPaths(),
     buildBlogList(),
-    copy404ToIndex(),
+    copyIndexToDates(),
     importToCDN({
       modules: [
         {

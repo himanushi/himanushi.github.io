@@ -1,3 +1,6 @@
+@import url("https://unpkg.com/open-props@1.6.16/open-props.min.css");
+@import url("https://unpkg.com/open-props@1.6.16/normalize.min.css");
+
 a {
   color: var(--blue-5);
   text-decoration: underline;

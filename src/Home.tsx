@@ -1,10 +1,13 @@
+import { signal } from "@preact/signals";
 import { useEffect, useState } from "preact/hooks";
+
+const cacheTime = signal(Date.now());
 
 export const Home = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    fetch(`/blog/blogList.txt?time=${Date.now()}`)
+    fetch(`/blog/blogList.txt?time=${cacheTime.value}`)
       .then((response) => response.text())
       .then((text) => setContent(text))
       .catch((error) => console.error("Error loading blog list:", error));

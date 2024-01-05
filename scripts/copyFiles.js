@@ -23,6 +23,7 @@ const excludeFiles = [
   "vite.config.ts",
   "vite-env.d.ts",
   "tsconfig.node.json",
+  "open-props.min.css",
 ];
 
 function directoryContents(dir, depth = 0) {

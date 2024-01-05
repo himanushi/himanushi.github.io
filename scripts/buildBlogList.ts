@@ -33,6 +33,11 @@ export default function buildBlogList() {
         }
 
         fs.writeFileSync(
+          path.join(blogDirectory, "blogList.txt"),
+          blogList.join("\n"),
+        );
+
+        fs.writeFileSync(
           path.join(outputDirectory, "blogList.txt"),
           blogList.join("\n"),
         );
