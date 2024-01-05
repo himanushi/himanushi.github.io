@@ -2,6 +2,8 @@ import path from "path";
 import { defineConfig } from "vite";
 import { importToCDN } from "vite-plugin-external-cdn";
 import tsconfigPaths from "vite-tsconfig-paths";
+import buildBlogList from "./scripts/buildBlogList";
+import copy404ToIndex from "./scripts/copy404ToIndex";
 
 export default defineConfig({
   resolve: {
@@ -11,6 +13,8 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
+    buildBlogList(),
+    copy404ToIndex(),
     importToCDN({
       modules: [
         {
@@ -37,6 +41,11 @@ export default defineConfig({
           name: "preact-router",
           var: "preactRouter",
           path: "https://unpkg.com/preact-router@4.1.1/dist/preact-router.umd.js",
+        },
+        {
+          name: "marked",
+          var: "marked",
+          path: "https://unpkg.com/marked@11.1.1/lib/marked.umd.js",
         },
       ],
     }),

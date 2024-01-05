@@ -1,6 +1,6 @@
 import { render } from "preact";
 import { Route, Router } from "preact-router";
-import { Counter } from "~/Counter";
+import { Blog } from "~/Blog";
 import { Home } from "~/Home";
 
 import "~/theme/global.css";
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Router>
       <Route path="/" component={Home} />
-      <Route path="/counter" component={Counter} />
+      <Route path="/blog/:id" component={Blog} default />
     </Router>
   );
 };
