@@ -1,10 +1,10 @@
-const description = "ここにこのプロジェクトの説明を記述すること。";
+const description =
+  "これは Github Pages に自作デプロイを作成したプロジェクトです。";
 
 import fs from "fs";
 import path from "path";
 import clipboardy from "clipboardy";
 
-// コピペから除外するファイル又はディレクトリ
 const excludeFiles = [
   "node_modules",
   ".git",
@@ -79,4 +79,4 @@ const contents = directoryContents(process.cwd());
 const combinedOutput = `${description}\n\n${treeOutput}\n\n${contents}`;
 
 clipboardy.writeSync(combinedOutput);
-console.log("コピーしました。");
+console.log("コピーしました");
