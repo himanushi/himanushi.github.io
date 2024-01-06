@@ -1,0 +1,43 @@
+name: Generate Comment
+on:
+  push:
+    paths:
+      - 'public/blogs/*.md'
+
+jobs:
+  generate-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Get list of updated markdown files
+      id: get-updated-files
+      run: |
+        echo "UPDATED_FILES<<EOF" >> $GITHUB_ENV
+        git diff --name-only ${{ github.sha }} | grep 'public/blogs/.*\.md' >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Generate Comment for each file
+      run: |
+        for file in ${{ env.UPDATED_FILES }}
+        do
+          echo "Processing file $file"
+          node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} $file comment
+        done
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Auto-generated comments for updated blogs"
+        git push
