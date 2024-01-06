@@ -1,5 +1,6 @@
 import { constants } from "fs";
 import { access, readFile, writeFile } from "fs/promises";
+import fetch from "node-fetch";
 
 const patterns = {
   comment: {
