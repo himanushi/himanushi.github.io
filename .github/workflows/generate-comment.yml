@@ -19,14 +19,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 更新されたブログファイル名を取得
       - name: Get list of dates from updated markdown files
         run: |
-          if git rev-parse HEAD~1 >/dev/null 2>&1; then
-            git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
-          else
-            git ls-files 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
-          fi
+          git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
 
       - name: Generate comment
         run: |
