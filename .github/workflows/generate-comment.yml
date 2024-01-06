@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate comment
         run: |
-          ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
+          node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
 
       - name: Commit changes
         run: |
