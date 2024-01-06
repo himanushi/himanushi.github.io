@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-const blogDirectory = "./public/blog";
-const outputDirectory = "./dist/blog";
+const blogDirectory = "./public/blogs";
+const outputDirectory = "./dist";
 
 export default function buildBlogList() {
   return {
@@ -33,12 +33,12 @@ export default function buildBlogList() {
         }
 
         fs.writeFileSync(
-          path.join(blogDirectory, "blogList.txt"),
+          path.join(outputDirectory, "blogList.txt"),
           blogList.join("\n"),
         );
 
         fs.writeFileSync(
-          path.join(outputDirectory, "blogList.txt"),
+          path.join("./public", "blogList.txt"),
           blogList.join("\n"),
         );
       } catch (error) {

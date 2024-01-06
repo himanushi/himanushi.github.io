@@ -6,12 +6,7 @@ export default function copyIndexToDates() {
     name: "copy-index-to-dates",
     async closeBundle() {
       const projectRoot = process.cwd();
-      const blogListPath = path.join(
-        projectRoot,
-        "dist",
-        "blog",
-        "blogList.txt",
-      );
+      const blogListPath = path.join(projectRoot, "dist", "blogList.txt");
       const indexPath = path.join(projectRoot, "dist", "index.html");
 
       try {
@@ -26,7 +21,7 @@ export default function copyIndexToDates() {
           const destPath = path.join(
             projectRoot,
             "dist",
-            "blog",
+            "blogs",
             `${date}.html`,
           );
           fs.copyFileSync(indexPath, destPath);

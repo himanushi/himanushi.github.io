@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Router>
       <Route path="/" component={Home} />
-      <Route path="/blog/:id" component={Blog} />
+      <Route path="/blogs/:id" component={Blog} />
       <Route default component={NotFound} />
     </Router>
   );

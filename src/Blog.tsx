@@ -9,7 +9,7 @@ interface BlogProps {
 
 export const Blog: FunctionComponent<BlogProps> = ({ matches }) => {
   const content = useBlogContent(matches.id);
-  const comment = useBlogContent(`${matches.id}.comment`);
+  const comment = useBlogContent(`${matches.id}.comment`, "/comments");
 
   return (
     <div>

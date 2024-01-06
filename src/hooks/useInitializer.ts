@@ -4,7 +4,7 @@ import { blogList } from "~/store";
 export const useInitializer = () => {
   useEffect(() => {
     if (blogList.value.length > 0) return;
-    fetch(`/blog/blogList.txt?time=${Date.now()}`)
+    fetch(`/blogList.txt?time=${Date.now()}`)
       .then((response) => response.text())
       .then((text) => {
         blogList.value = text.split("\n");

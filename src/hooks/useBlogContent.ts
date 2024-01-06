@@ -2,7 +2,7 @@ import { marked } from "marked";
 import { useEffect, useState } from "preact/hooks";
 import { blogContents } from "~/store";
 
-export const useBlogContent = (blogId: string) => {
+export const useBlogContent = (blogId: string, path = "/blogs") => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export const useBlogContent = (blogId: string) => {
       return;
     }
 
-    fetch(`/blog/${blogId}.md?time=${Date.now()}`)
+    fetch(`${path}/${blogId}.md?time=${Date.now()}`)
       .then((response) => {
         if (response.ok) {
           return response.text();

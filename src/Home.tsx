@@ -7,7 +7,7 @@ export const Home = () => {
       <ul>
         {blogList.value.map((post) => (
           <li key={post}>
-            <a href={`/blog/${post}`}>{post}</a>
+            <a href={`/blogs/${post}`}>{post}</a>
           </li>
         ))}
       </ul>
