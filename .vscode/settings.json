@@ -6,7 +6,7 @@
         "cmd": "npx @biomejs/biome check --apply ${file}"
       },
       {
-        "match": "\\.json$|\\.css$|\\.html$|\\.md$",
+        "match": "\\.json$|\\.css$|\\.html$|\\.md$|\\.yml$",
         "cmd": "npx prettier --write ${file}"
       }
     ]

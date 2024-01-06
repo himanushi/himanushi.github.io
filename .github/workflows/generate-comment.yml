@@ -1,42 +1,37 @@
-name: Generate Comment for Updated Blogs and Deploy
+name: Generate Comment
 on:
   push:
     paths:
-      - 'public/blogs/*.md'
+      - "public/blogs/*.md"
 
 jobs:
   generate-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Get list of updated markdown files
-      id: get-updated-files
-      run: |
-        echo "UPDATED_FILES=$(git diff --name-only ${{ github.sha }} | grep 'public/blogs/.*\.md')" >> $GITHUB_ENV
+      # 更新されたブログファイル名を取得
+      - name: Get list of dates from updated markdown files
+        run: |
+          git diff --name-only HEAD~1 | grep 'public/blogs/.*\.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
 
-    - name: Generate Comment for each file
-      run: |
-        IFS=$'\n' read -d '' -r -a files <<< "${{ env.UPDATED_FILES }}"
-        for file in "${files[@]}"
-        do
-          echo "Processing file $file"
-          node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} $file comment
-        done
+      - name: Generate comment
+        run: |
+          ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
 
-    - name: Commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -A
-        git commit -m "Auto-generated comments for updated blogs"
-        git push
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Auto-generated comments for updated blogs"
+          git push
