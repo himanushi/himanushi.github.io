@@ -34,8 +34,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
+          git config --local user.email "27812830+himanushi@users.noreply.github.com"
+          git config --local user.name "himanushi"
+          git add public/blogs/
           git commit -m "Auto-generated comments for updated blogs"
           git push
