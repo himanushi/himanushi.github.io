@@ -1,4 +1,4 @@
-name: Generate Comment
+name: Generate Comment for Updated Blogs and Deploy
 on:
   push:
     paths:
@@ -22,13 +22,12 @@ jobs:
     - name: Get list of updated markdown files
       id: get-updated-files
       run: |
-        echo "UPDATED_FILES<<EOF" >> $GITHUB_ENV
-        git diff --name-only ${{ github.sha }} | grep 'public/blogs/.*\.md' >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+        echo "UPDATED_FILES=$(git diff --name-only ${{ github.sha }} | grep 'public/blogs/.*\.md')" >> $GITHUB_ENV
 
     - name: Generate Comment for each file
       run: |
-        for file in ${{ env.UPDATED_FILES }}
+        IFS=$'\n' read -d '' -r -a files <<< "${{ env.UPDATED_FILES }}"
+        for file in "${files[@]}"
         do
           echo "Processing file $file"
           node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} $file comment
