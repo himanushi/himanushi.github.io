@@ -3,6 +3,7 @@ import { access, readFile, writeFile } from "fs/promises";
 
 const patterns = {
   comment: {
+    once: false,
     filePath: (date) => `./public/comments/${date}.comment.md`,
     content: (date, content) => [
       {
@@ -13,6 +14,7 @@ const patterns = {
     ],
   },
   tarot: {
+    once: true,
     filePath: (date) => `./public/comments/${date}.tarot.md`,
     content: (date, _content) => {
       const tarot = Math.floor(Math.random() * 22) + 1;
@@ -42,11 +44,10 @@ async function generateComment() {
 
   try {
     await access(outputPath, constants.F_OK);
-    console.log(`${PATTERN} ファイルは既に存在します。`);
-    return;
-  } catch (_error) {
-    console.log(`${PATTERN} ファイルは存在しません。`);
-  }
+    if (patterns[PATTERN].once) {
+      return;
+    }
+  } catch (_error) {}
 
   const blogContent = await readFile(BLOG_FILE_PATH, "utf8");
 
