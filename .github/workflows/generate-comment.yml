@@ -8,10 +8,13 @@ jobs:
   generate-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Switch to pull request branch
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Fetch base branch
+        run: git fetch origin main:main
 
       - name: Get list of dates from updated markdown files
         run: |
