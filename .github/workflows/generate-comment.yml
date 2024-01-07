@@ -13,9 +13,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Fetch base branch
-        run: git fetch origin main:main
-
       - name: Get list of dates from updated markdown files
         run: |
           git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
