@@ -8,6 +8,7 @@ import clipboardy from "clipboardy";
 const excludeFiles = [
   "node_modules",
   ".git",
+  ".env",
   "dist",
   "blog",
   ".github",
@@ -24,6 +25,8 @@ const excludeFiles = [
   "vite-env.d.ts",
   "tsconfig.node.json",
   "open-props.min.css",
+  "blogs",
+  "comments",
 ];
 
 function directoryContents(dir, depth = 0) {

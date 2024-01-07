@@ -29,23 +29,19 @@ jobs:
           fi
 
       - name: Set up Node.js
-        if: env.skip != 'true'
         uses: actions/setup-node@v2
         with:
           node-version: "14"
 
       - name: Install Dependencies
-        if: env.skip != 'true'
         run: npm install
 
       - name: Generate comment
-        if: env.skip != 'true'
         run: |
           node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
           node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} tarot
 
       - name: Commit changes
-        if: env.skip != 'true'
         run: |
           git config --local user.email "27812830+himanushi@users.noreply.github.com"
           git config --local user.name "himanushi"
@@ -54,15 +50,12 @@ jobs:
           git push
 
       - name: Install dependencies
-        if: env.skip != 'true'
         uses: bahmutov/npm-install@v1
 
       - name: Build project
-        if: env.skip != 'true'
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        if: env.skip != 'true'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
