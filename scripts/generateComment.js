@@ -62,7 +62,7 @@ async function generateComment() {
       },
       body: JSON.stringify({
         messages: patterns[PATTERN].content(date, blogContent),
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
       }),
     });
 
