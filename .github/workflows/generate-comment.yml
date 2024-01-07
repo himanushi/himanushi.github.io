@@ -39,6 +39,7 @@ jobs:
         if: env.skip != 'true'
         run: |
           node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
+          node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} tarot
 
       - name: Commit changes
         if: env.skip != 'true'
