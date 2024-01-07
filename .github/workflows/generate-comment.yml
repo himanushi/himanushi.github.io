@@ -17,19 +17,31 @@ jobs:
         run: |
           git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
 
+      - name: Check if there are updated markdown files
+        id: check_files
+        run: |
+          if [ ! -s changed_dates.txt ]; then
+            echo "No updated markdown files found, skipping."
+            echo "skip=true" >> $GITHUB_ENV
+          fi
+
       - name: Set up Node.js
+        if: env.skip != 'true'
         uses: actions/setup-node@v2
         with:
           node-version: "14"
 
       - name: Install Dependencies
+        if: env.skip != 'true'
         run: npm install
 
       - name: Generate comment
+        if: env.skip != 'true'
         run: |
           node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
 
       - name: Commit changes
+        if: env.skip != 'true'
         run: |
           git config --local user.email "27812830+himanushi@users.noreply.github.com"
           git config --local user.name "himanushi"
