@@ -45,6 +45,6 @@ jobs:
         run: |
           git config --local user.email "27812830+himanushi@users.noreply.github.com"
           git config --local user.name "himanushi"
-          git add public/blogs/
-          git commit -m "Auto-generated comments for updated blogs"
+          git add public/comments/
+          git diff --cached --quiet || git commit -m "Auto-generated comments for updated blogs"
           git push
