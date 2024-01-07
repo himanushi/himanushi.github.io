@@ -1,10 +1,9 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows: ["Generate Comment"]
-    types:
-      - completed
+  push:
+    paths:
+      - "public/blogs/*.md"
 
 jobs:
   build:
@@ -14,12 +13,40 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
       - name: Setup Node
         uses: actions/setup-node@v3
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+
+      - name: Get list of dates from updated markdown files
+        run: |
+          git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
+
+      - name: Check if there are updated markdown files
+        id: check_files
+        run: |
+          if [ ! -s changed_dates.txt ]; then
+            echo "No updated markdown files found, skipping."
+            echo "skip=true" >> $GITHUB_ENV
+          fi
+
+      - name: Generate comment
+        if: env.skip != 'true'
+        run: |
+          node ./scripts/generateComment.js ${{ secrets.OPENAI_API_KEY }} comment
+
+      - name: Commit changes
+        if: env.skip != 'true'
+        run: |
+          git config --local user.email "27812830+himanushi@users.noreply.github.com"
+          git config --local user.name "himanushi"
+          git add public/comments/
+          git diff --cached --quiet || git commit -m "Auto-generated comments for updated blogs"
+          git push
 
       - name: Build project
         run: npm run build
