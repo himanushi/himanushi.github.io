@@ -10,12 +10,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-
-      - name: Get list of dates from updated markdown files
         run: |
           git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
+
+      # - name: Get list of dates from updated markdown files
+      #   run: |
+      #     git diff --name-only HEAD~1 -- 'public/blogs/*.md' | sed -e 's/public\/blogs\/\([0-9-]*\)\.md/\1/' > changed_dates.txt
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
