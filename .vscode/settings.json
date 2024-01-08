@@ -17,5 +17,5 @@
     "*.tsx": "$(capture).module.css,$(capture).css"
   },
 
-  "cSpell.words": ["clipboardy", "preact"]
+  "cSpell.words": ["clipboardy", "himanushi", "openai", "preact"]
 }
