@@ -6,7 +6,7 @@ export const Home = () => {
     <div className={styles.homeContainer}>
       <h1>Himanushi Lifelog</h1>
       <ul className={styles.blogList}>
-        {blogList.value.reverse().map((post) => (
+        {blogList.value.map((post) => (
           <li key={post}>
             <a href={`/blogs/${post}`}>{post}</a>
           </li>

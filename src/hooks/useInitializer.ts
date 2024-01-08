@@ -7,7 +7,7 @@ export const useInitializer = () => {
     fetch(`/blogList.txt?time=${Date.now()}`)
       .then((response) => response.text())
       .then((text) => {
-        blogList.value = text.split("\n");
+        blogList.value = text.split("\n").reverse();
       })
       .catch((error) => console.error("Error loading blog list:", error));
   }, []);
