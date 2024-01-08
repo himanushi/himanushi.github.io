@@ -1,0 +1,24 @@
+.blogContainer {
+  padding: var(--size-4);
+  background-color: var(--gray-9); /* 暗い背景色 */
+  color: var(--gray-1); /* 明るいテキスト色 */
+}
+
+.blogPost {
+  background-color: var(--gray-7); /* やや暗い背景色 */
+  padding: var(--size-3);
+  margin-bottom: var(--size-3);
+  border: 1px dashed var(--gray-6);
+}
+
+.blogPost h2 {
+  font-size: var(--size-5);
+  margin-bottom: var(--size-2);
+}
+
+.blogContent,
+.blogComment,
+.blogTarot {
+  font-size: var(--text-small);
+  line-height: var(--leading-loose);
+}

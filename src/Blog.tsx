@@ -1,5 +1,6 @@
 import { FunctionComponent } from "preact";
 import { useBlogContent } from "~/hooks/useBlogContent";
+import styles from "./Blog.module.css";
 
 interface BlogProps {
   matches: {
@@ -13,23 +14,30 @@ export const Blog: FunctionComponent<BlogProps> = ({ matches }) => {
   const tarot = useBlogContent(`${matches.id}.tarot`, "/comments");
 
   return (
-    <div>
+    <div className={styles.blogContainer}>
       <h2>{matches.id}</h2>
-      {content && (
-        <div>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-        </div>
-      )}
+      <div className={styles.blogPost}>
+        <div
+          className={styles.blogContent}
+          dangerouslySetInnerHTML={{ __html: content ?? "" }}
+        />
+      </div>
       {tarot && (
-        <div>
+        <div className={styles.blogPost}>
           <h2>Fortune</h2>
-          <div dangerouslySetInnerHTML={{ __html: tarot }} />
+          <div
+            className={styles.blogTarot}
+            dangerouslySetInnerHTML={{ __html: tarot }}
+          />
         </div>
       )}
       {comment && (
-        <div>
+        <div className={styles.blogPost}>
           <h2>Comment</h2>
-          <div dangerouslySetInnerHTML={{ __html: comment }} />
+          <div
+            className={styles.blogComment}
+            dangerouslySetInnerHTML={{ __html: comment }}
+          />
         </div>
       )}
     </div>

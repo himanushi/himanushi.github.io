@@ -1,10 +1,11 @@
 import { blogList } from "~/store";
+import styles from "./Home.module.css";
 
 export const Home = () => {
   return (
-    <div>
+    <div className={styles.homeContainer}>
       <h1>Himanushi Lifelog</h1>
-      <ul>
+      <ul className={styles.blogList}>
         {blogList.value.reverse().map((post) => (
           <li key={post}>
             <a href={`/blogs/${post}`}>{post}</a>

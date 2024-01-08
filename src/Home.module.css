@@ -1,0 +1,28 @@
+.homeContainer {
+  padding: var(--size-4);
+  background-color: var(--gray-9); /* コンテナの背景色をダークモード対応に */
+  color: var(--gray-1); /* テキスト色を明るく */
+}
+
+.homeContainer h1 {
+  font-size: var(--size-6);
+  margin-bottom: var(--size-4);
+}
+
+.blogList {
+  list-style: none;
+  padding: 0;
+  background-color: var(--gray-9); /* リストの背景色もダークモード対応に */
+}
+
+.blogList li {
+  background-color: var(--gray-7); /* 各リスト項目の背景色を少し明るく */
+  margin-bottom: var(--size-2);
+  padding: var(--size-3);
+  border: 1px dashed var(--gray-6);
+}
+
+.blogList li a {
+  color: var(--blue-4); /* リンク色を明るく */
+  text-decoration: none;
+}
