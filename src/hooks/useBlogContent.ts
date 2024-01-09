@@ -1,5 +1,5 @@
-import { marked } from "marked";
 import { useEffect, useState } from "preact/hooks";
+import { markdown } from "~/lib/markdown";
 import { blogContents } from "~/store";
 
 export const useBlogContent = (blogId: string, path = "/blogs") => {
@@ -22,7 +22,7 @@ export const useBlogContent = (blogId: string, path = "/blogs") => {
         return Promise.reject(response);
       })
       .then(async (text) => {
-        const content = await marked(text);
+        const content = await markdown(text);
         blogContents.value[blogId] = { content: content };
         setBlogContent(content);
       })

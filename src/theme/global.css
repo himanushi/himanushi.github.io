@@ -1,22 +1,25 @@
 @import url("https://unpkg.com/open-props@1.6.16/open-props.min.css");
 @import url("https://unpkg.com/open-props@1.6.16/normalize.dark.min.css");
 
-a {
-  color: var(--blue-5);
-  text-decoration: underline;
-  &:hover {
-    text-decoration: none;
-  }
-  &:visited {
-    color: var(--purple-5);
-  }
+.time-block {
+  border: 1px solid var(--gray-6); /* 枠線 */
+  border-radius: var(--radius-2); /* 角を丸くする */
+  background-color: var(--gray-8); /* 背景色 */
+  padding: var(--size-2); /* パディング */
+  margin-bottom: var(--size-3); /* 下部のマージン */
+  color: var(--gray-1); /* テキスト色 */
+  display: block; /* ブロック要素として表示 */
 }
 
-button {
-  border: none;
-  background-color: var(--red-5);
-  cursor: pointer;
-  &:disabled {
-    cursor: not-allowed;
-  }
+.time-display {
+  background-color: var(--blue-7); /* 時間表示の背景色 */
+  color: var(--gray-1); /* 時間表示のテキスト色 */
+  padding: var(--size-1); /* 時間表示のパディング */
+  border-radius: var(--radius-1); /* 時間表示の角を丸くする */
+}
+
+.time-block p {
+  padding: var(--size-1); /* パラグラフのパディング */
+  margin: 0; /* パラグラフのマージンを0にする */
+  background-color: transparent; /* 背景色を透明にする */
 }
