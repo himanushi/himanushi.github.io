@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "pre": "vite build && npx http-server ./dist",
+    "push": "git fetch origin && git rebase origin/main && git push origin main",
     "update": "ncu -u"
   },
   "devDependencies": {
